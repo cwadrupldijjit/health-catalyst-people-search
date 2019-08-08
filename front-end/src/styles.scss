@@ -1,0 +1,200 @@
+@import '~@healthcatalyst/cashmere/scss/cashmere';
+@import './fonts';
+@import './cashmere-overrides';
+@import './colors';
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    line-height: 1.35;
+}
+
+body {
+    background-color: $background;
+}
+
+.fizzle-text {
+    animation: 1s linear text-fizzle;
+}
+
+button {
+    background-color: transparent;
+    font-weight: 700;
+    border: 3px solid $hologram-blue;
+    color: $hologram-blue;
+    font-size: 1em;
+    cursor: pointer;
+
+    &:focus,
+    &:hover {
+        outline: none;
+        border-color: $dark-hologram-blue;
+        background-color: $dark-hologram-blue;
+        color: $background;
+    }
+
+    &.warn {
+        border-color: $hologram-red;
+        color: $hologram-red;
+        
+        &:focus,
+        &:hover {
+            background-color: $hologram-red;
+            color: $background;
+        }
+    }
+
+    &.success {
+        border-color: $hologram-green;
+        color: $hologram-green;
+        
+        &:focus,
+        &:hover {
+            background-color: $hologram-green;
+            color: $background;
+        }
+    }
+
+    &.plain {
+        border-color: $hologram-white;
+        color: $hologram-white;
+        
+        &:focus,
+        &:hover {
+            background-color: $hologram-white;
+            color: $background;
+        }
+    }
+}
+
+input,
+select,
+textarea {
+    border: none;
+    border-bottom: 3px solid $hologram-blue;
+    background-color: transparent;
+    color: $hologram-blue;
+    outline: none;
+    font-size: 20px;
+    padding: .4em 0;
+
+    &:focus {
+        border-color: $hologram-green;
+        color: $hologram-green;
+    }
+}
+
+label {
+    font-size: .6em;
+}
+
+@keyframes text-fizzle {
+    0% {
+        opacity: 0;
+        font-family: inherit;
+        color: $dark-hologram-blue;
+    }
+
+    5% {
+        opacity: .2;
+        font-family: inherit;
+    }
+
+    7% {
+        font-family: 'Aurebesh', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        transform: skewX(78deg) translate(-3px);
+    }
+
+    11% {
+        transform: skewX(-78deg);
+    }
+
+    15% {
+        transform: skewX(78deg) translate(3px);
+    }
+
+    19% {
+        transform: skewX(-94deg);
+    }
+
+    23% {
+        transform: skewX(94deg) translate(-5px);
+    }
+
+    27% {
+        transform: skewX(-94deg);
+    }
+
+    31% {
+        opacity: .8;
+        transform: skewX(74deg) translate(5px);
+    }
+
+    35% {
+        transform: skewX(-74deg);
+    }
+
+    39% {
+        transform: skewX(20deg) translate(-1px);
+    }
+
+    43% {
+        opacity: 1;
+        transform: none;
+    }
+
+    57% {
+        transform: none;
+    }
+
+    61% {
+        opacity: 1;
+        transform: none;
+    }
+
+    65% {
+        transform: skewX(20deg) translate(-1px);
+    }
+
+    69% {
+        transform: skewX(-74deg);
+    }
+
+    73% {
+        opacity: .8;
+        transform: skewX(74deg) translate(5px);
+    }
+
+    77% {
+        transform: skewX(-94deg);
+    }
+
+    81% {
+        transform: skewX(94deg) translate(-5px);
+    }
+
+    85% {
+        transform: skewX(-94deg);
+    }
+
+    89% {
+        opacity: .2;
+        font-family: 'Aurebesh', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        transform: skewX(78deg) translate(-3px);
+    }
+
+    93% {
+        opacity: 0;
+        transform: none;
+        color: $dark-hologram-blue;
+    }
+
+    100% {
+        opacity: 1;
+        font-family: inherit;
+        transform: none;
+        color: inherit;
+    }
+}

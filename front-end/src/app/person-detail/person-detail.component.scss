@@ -1,0 +1,121 @@
+@import '../../colors';
+
+$gaps: 40px;
+$hologram-border: 2px solid $hologram-blue;
+
+:host {
+    display: block;
+    max-width: 1200px;
+    width: 85%;
+    margin: 0 auto;
+}
+
+hc-tile {
+    margin-top: $gaps * 4/3;
+    display: grid;
+    grid-template-columns: 186px 3fr 2fr;
+    grid-template-rows: max-content;
+    grid-template-areas: 'img name name'
+        'img basic-info basic-info'
+        'img address interests'
+        'img notes notes'
+        'controls controls controls';
+}
+
+.img-frame {
+    grid-area: img;
+    border-right: $hologram-border;
+    padding-right: $gaps;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+
+    input {
+        position: absolute;
+        bottom: 0;
+        background-color: $background;
+        width: calc(100% - #{$gaps});
+    }
+}
+
+img {
+    width: 100%;
+}
+
+h2 {
+    grid-area: name;
+    padding-left: $gaps;
+    line-height: initial;
+}
+
+label {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+h3 {
+    color: lighten($dark-hologram-blue, 23);
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.basic-info {
+    grid-area: basic-info;
+    padding-left: $gaps;
+    padding-top: $gaps / 2;
+}
+
+.address {
+    grid-area: address;
+    padding-left: $gaps;
+    padding-right: $gaps;
+    margin-top: $gaps;
+    border-right: $hologram-border;
+}
+
+.interests {
+    grid-area: interests;
+    margin-top: $gaps;
+    padding-left: $gaps;
+}
+
+.notes {
+    grid-area: notes;
+    border-top: $hologram-border;
+    padding-top: $gaps;
+    margin-left: $gaps;
+    margin-top: $gaps;
+    
+    p {
+        width: 100%;
+        white-space: pre-wrap;
+    }
+}
+
+textarea {
+    width: 100%;
+    height: 7.5em;
+}
+
+.controls {
+    grid-area: controls;
+    padding-top: $gaps / 2;
+    margin-top: $gaps;
+    border-top: $hologram-border;
+    display: flex;
+    height: 31px + $gaps;
+}
+
+.flex-spacer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 1;
+}
+
+.success {
+    margin-right: .8em;
+}

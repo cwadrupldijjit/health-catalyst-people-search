@@ -1,0 +1,55 @@
+@import '../../colors';
+
+.chip {
+    border-radius: 1em;
+    border-width: 2px;
+    height: 1em;
+    font-size: .8em;
+    box-sizing: content-box;
+    padding: .3em .5em;
+
+    &:not(:last-child) {
+        margin-right: .5em;
+    }
+}
+
+.autocomplete-container {
+    display: inline-block;
+    position: relative;
+    width: max-content;
+}
+
+.autocomplete-options {
+    position: absolute;
+    top: 100%;
+    min-width: 100%;
+    width: max-content;
+    background-color: $background;
+    display: flex;
+    flex-direction: column;
+}
+
+.option {
+    padding: .7em .9em;
+    text-align: left;
+
+    &:not(:last-child) {
+        border-bottom: none;
+    }
+
+    &:not(:first-child) {
+        border-top: none;
+    }
+
+    &.selected {
+        $lightened-hologram-green: lighten($hologram-green, 8);
+        color: $background;
+        background-color: $lightened-hologram-green;
+        border-color: $lightened-hologram-green;
+    }
+
+    &:hover {
+        background-color: $hologram-green;
+        border-color: $hologram-green;
+    }
+}

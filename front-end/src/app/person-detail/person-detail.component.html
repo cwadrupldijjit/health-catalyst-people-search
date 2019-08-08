@@ -1,0 +1,92 @@
+<hc-progress-dots [color]="'light'" *ngIf="loading"></hc-progress-dots>
+
+<form [formGroup]="editForm" *ngIf="person">
+    <hc-tile>
+        <div class="img-frame" [class.show-input]="editModes.picture">
+            <img [src]="person.picture" [alt]="person.firstName + ' ' + person.lastName" (click)="!editModes.picture && editField('picture')">
+            <input formControlName="picture" type="url" *ngIf="editModes.picture">
+        </div>
+
+        <h2>
+            <div *ngIf="!editModes.firstName || !editModes.lastName" (click)="editField('firstName'); editField('lastName')" hcTextFizzle>
+                {{ person.firstName }} {{ person.lastName }}
+            </div>
+            <label *ngIf="editModes.firstName">
+                First Name<br>
+                <input type="text" formControlName="firstName">
+            </label>
+            &nbsp;
+            <label *ngIf="editModes.lastName">
+                Last Name<br>
+                <input type="text" formControlName="lastName">
+            </label>
+        </h2>
+
+        <div class="basic-info">
+            <span>
+                Occupation: 
+                <span (click)="editField('occupation')" *ngIf="!editModes.occupation">{{ person.occupation.name }}</span>
+                <hc-autocomplete-chips
+                    [single]="true"
+                    *ngIf="editModes.occupation"
+                    formControlName="occupation"
+                    [options]="(occupationResults | async)?.results"
+                    (queryChange)="getOccupations($event)"
+                ></hc-autocomplete-chips>
+            </span>
+            |
+            <span>
+                Age:
+                <span (click)="editField('age')" *ngIf="!editModes.age">{{ person.age }}</span>
+                <input formControlName="age" *ngIf="editModes.age" type="number">
+            </span>
+            |
+            <span>
+                Email:
+                <span (click)="editField('email')" *ngIf="!editModes.email">{{ person.email || '&lt;none>' }}</span>
+                <input formControlName="email" *ngIf="editModes.email" type="email">
+            </span>
+        </div>
+
+        <div class="address">
+            <!-- address not editable in first iteration of the project -->
+            <h3 hcTextFizzle>Address</h3>
+            <div>{{ person.address.addressLine1 }}</div>
+            <div></div>
+            <div>{{ person.address.addressLine2 }}</div>
+            <div>{{ person.address.city }}</div>
+            <div>{{ person.address.region }}</div>
+            <div>{{ person.address.planet }}</div>
+        </div>
+
+        <div class="interests" >
+            <h3 hcTextFizzle>Interests</h3>
+            <ul *ngIf="!editModes.interests">
+                <li class="interest" (click)="editField('interests')" *ngFor="let interest of (person.interests || [])">{{ interest.name }}</li>
+            </ul>
+            <button *ngIf="!person.interests?.length && !editModes.interests" (click)="editField('interests')">No interests. Click to edit.</button>
+            <hc-autocomplete-chips
+                *ngIf="editModes.interests"
+                formControlName="interests"
+                [options]="(interestResults | async)?.results"
+                (queryChange)="getInterests($event)"
+            ></hc-autocomplete-chips>
+        </div>
+
+        <div class="notes">
+            <h3 hcTextFizzle>Notes</h3>
+            <p *ngIf="!editModes.notes" (click)="editField('notes')">{{ person.notes }}</p>
+            <textarea formControlName="notes" *ngIf="editModes.notes"></textarea>
+        </div>
+
+        <div class="controls">
+            <button type="button" class="success" (click)="submit()" *ngIf="anyEditModesEnabled">Save</button>
+            <button type="button" class="plain" (click)="cancelEdits()" *ngIf="anyEditModesEnabled">Cancel</button>
+            <span class="flex-spacer">Click the details to edit them</span>
+            <!-- Hiding the below for the first iteration of the project -->
+            <button type="button" class="warn" (click)="delete()" *ngIf="false">Delete</button>
+        </div>
+    </hc-tile>
+</form>
+
+<a [routerLink]="['..']">Return to main screen</a>

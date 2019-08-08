@@ -1,0 +1,43 @@
+<ng-container *ngIf="!single">
+    <button
+        class="chip"
+        *ngFor="let chip of value; let index = index"
+        [attr.aria-label]="'remove ' + chip.name + ' from person'"
+        type="button"
+        (click)="removeOption(index)"
+        (keydown.enter)="$event.stopPropagation(); removeOption(index)"
+    >
+        {{ chip.name }}
+        
+        <span>
+            &times;
+        </span>
+    </button>
+</ng-container>
+
+<div class="autocomplete-container" role="menu">
+    <input
+        type="text"
+        #autocomplete
+        [formControl]="queryControl"
+        (keydown.arrowup)="shiftSelectedOptionUp()"
+        (keydown.arrowdown)="shiftSelectedOptionDown()"
+        (keyup.enter)="handleEnter($event)"
+        (focus)="showSuggestionList = true"
+        (blur)="handleQueryBlur()">
+    
+    <div class="autocomplete-options" *ngIf="showSuggestionList">
+        <button
+            role="option"
+            *ngFor="let option of options"
+            class="option"
+            [class.selected]="selectedOption?.id == option.id"
+            [attr.aria-label]="'add ' + option.name + ' to person'"
+            [disabled]="isLoadingResults"
+            type="button"
+            (mousedown)="addOption(option); $event.preventDefault()"
+        >
+            {{ option.name }}
+        </button>
+    </div>
+</div>

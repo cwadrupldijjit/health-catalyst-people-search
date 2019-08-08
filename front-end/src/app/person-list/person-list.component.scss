@@ -1,0 +1,88 @@
+@import '../../colors';
+
+:host {
+    display: block;
+    padding-top: 40px;
+    padding-bottom: 80px;
+    max-width: 1200px;
+    width: 85%;
+    margin: 0 auto;
+}
+
+.search-bar {
+    margin: 0 auto 30px;
+}
+
+label {
+    font-size: 18px;
+}
+
+input {
+    margin-left: .8em;
+}
+
+hc-tile {
+    display: grid;
+    grid-template-areas: 'img name name'
+        'img basic-info basic-info'
+        'img address interests';
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: repeat(2, max-content) 1fr;
+    height: 349px;
+}
+
+.img-frame {
+    grid-area: img;
+    padding-right: 40px;
+    margin-right: 40px;
+    border-right: 2px solid $hologram-blue;
+    max-width: 243px;
+    display: flex;
+    align-items: center;
+}
+
+img {
+    width: 100%;
+    max-height: 100%;
+}
+
+h2 {
+    grid-area: name;
+}
+
+h3 {
+    color: lighten($dark-hologram-blue, 23);
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.basic-info {
+    grid-area: basic-info;
+    padding: 20px 0 40px;
+    padding-top: 20px;
+    margin-top: 10px;
+    border-top: 2px solid $hologram-blue;
+    font-size: .7em;
+}
+
+.address {
+    grid-area: address;
+    border-right: 2px solid $hologram-blue;
+    margin-right: 40px;
+}
+
+.interests {
+    grid-area: interests;
+}
+
+.pagination-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+button {
+    font-size: inherit;
+    padding: .4em .9em;
+}

@@ -1,0 +1,49 @@
+<div class="search-bar">
+    <label>Type to search: <input type="text" [formControl]="searchFormControl"></label>
+</div>
+
+<ng-container *ngIf="!loading">
+    <a [routerLink]="['/people', person.id]"  *ngFor="let person of peopleResults.results" title="Click for more details">
+        <hc-tile>
+            <div class="img-frame">
+                <img [src]="person.picture" [alt]="person.firstName + ' ' + person.lastName">
+            </div>
+
+            <h2 hcTextFizzle>{{ person.firstName }} {{ person.lastName }}</h2>
+
+            <div class="basic-info">
+                Age: {{ person.age }}
+                <span>|</span> 
+                Occupation: {{ person.occupation.name }}
+                <span *ngIf="person.email">|</span> 
+                <span class="email" *ngIf="person.email">
+                    Email: {{ person.email }}
+                </span>
+            </div>
+
+            <div class="address">
+                <h3 hcTextFizzle>Address</h3>
+                <div>{{ person.address.addressLine1 }}</div>
+                <div>{{ person.address.addressLine2 }}</div>
+                <div>{{ person.address.city }}</div>
+                <div>{{ person.address.region }}</div>
+                <div>{{ person.address.planet }}</div>
+            </div>
+
+            <div class="interests">
+                <h3 *ngIf="person.interests?.length" hcTextFizzle>Interests</h3>
+                <ul>
+                    <li class="interest" *ngFor="let interest of (person.interests || [])">{{ interest.name }}</li>
+                </ul>
+            </div>
+        </hc-tile>
+    </a>
+    
+    <div class="pagination-buttons">
+        <button *ngIf="peopleResults?.previousPage" (click)="changePage('previous')">Back</button>
+        &nbsp;<span *ngIf="peopleResults?.previousPage && peopleResults?.nextPage">|</span>&nbsp;
+        <button *ngIf="peopleResults?.nextPage" (click)="changePage('next')">Next</button>
+    </div>
+</ng-container>
+
+<hc-progress-dots [color]="'light'" *ngIf="loading"></hc-progress-dots>

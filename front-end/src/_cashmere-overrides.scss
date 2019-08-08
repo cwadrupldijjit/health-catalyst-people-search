@@ -1,0 +1,58 @@
+@import './colors';
+
+body {
+    color: #fff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+    color: inherit;
+    width: max-content;
+}
+
+h3 {
+    font-size: 28px;
+}
+
+hc-navbar {
+    .hc-navbar {
+        background-color: #0f2852;
+    }
+}
+
+hc-list-item {
+    .hc-tile {
+        color: inherit;
+    }
+}
+
+hc-progress-dots {
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #1138;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+
+html[lang] {
+    hc-tile {
+        background-color: transparent;
+        border: 5px solid $hologram-blue;
+        border-radius: 8px;
+        color: lighten($color: $hologram-blue, $amount: 10);
+        opacity: .8;
+        font-weight: 600;
+        font-size: 20px;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
