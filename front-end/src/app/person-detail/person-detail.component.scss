@@ -64,8 +64,11 @@ h3 {
 
 .basic-info {
     grid-area: basic-info;
-    padding-left: $gaps;
+    margin-left: $gaps;
+    margin-top: 10px;
     padding-top: $gaps / 2;
+    border-top: 2px solid $hologram-blue;
+    font-size: .7em;
 }
 
 .address {
