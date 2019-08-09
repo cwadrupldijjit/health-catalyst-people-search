@@ -349,6 +349,7 @@ let AutocompleteChipsComponent = AutocompleteChipsComponent_1 = class Autocomple
     addOption(option) {
         if (this.single) {
             this.value = option;
+            this.queryControl.reset(this.value.name);
         }
         else {
             this.value.push(option);
@@ -652,6 +653,7 @@ let PersonDetailComponent = class PersonDetailComponent {
             else {
                 this.resetForm();
             }
+            this.resetEditModes();
             this.loading = false;
         };
         this.handleError = (err) => {
@@ -672,7 +674,6 @@ let PersonDetailComponent = class PersonDetailComponent {
             .subscribe(this.handlePerson, this.handleError);
     }
     submit() {
-        this.resetEditModes();
         this.submitUpdate();
     }
     cancelEdits() {

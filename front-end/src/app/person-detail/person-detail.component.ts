@@ -64,7 +64,6 @@ export class PersonDetailComponent implements OnInit {
 
   @HostListener('keyup.control.enter')
   submit() {
-    this.resetEditModes();
     this.submitUpdate();
   }
   
@@ -126,6 +125,7 @@ export class PersonDetailComponent implements OnInit {
       this.resetForm();
     }
 
+    this.resetEditModes();
     this.loading = false;
   }
 

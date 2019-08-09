@@ -161,6 +161,7 @@ export class AutocompleteChipsComponent implements OnInit, OnChanges, OnDestroy,
   addOption(option: any) {
     if (this.single) {
       this.value = option;
+      this.queryControl.reset((this.value as any).name);
     }
     else {
       this.value.push(option);

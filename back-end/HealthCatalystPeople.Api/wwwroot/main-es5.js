@@ -365,6 +365,7 @@ var AutocompleteChipsComponent = /** @class */ (function () {
     AutocompleteChipsComponent.prototype.addOption = function (option) {
         if (this.single) {
             this.value = option;
+            this.queryControl.reset(this.value.name);
         }
         else {
             this.value.push(option);
@@ -683,6 +684,7 @@ var PersonDetailComponent = /** @class */ (function () {
             else {
                 _this.resetForm();
             }
+            _this.resetEditModes();
             _this.loading = false;
         };
         this.handleError = function (err) {
@@ -709,7 +711,6 @@ var PersonDetailComponent = /** @class */ (function () {
             .subscribe(this.handlePerson, this.handleError);
     };
     PersonDetailComponent.prototype.submit = function () {
-        this.resetEditModes();
         this.submitUpdate();
     };
     PersonDetailComponent.prototype.cancelEdits = function () {

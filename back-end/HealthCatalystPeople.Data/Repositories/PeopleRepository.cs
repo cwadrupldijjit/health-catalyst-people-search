@@ -121,13 +121,10 @@ namespace HealthCatalystPeople.Data.Repositories {
                     }
                 }
 
-                if (interests != currentPerson.Interests) {
-                    _personInterestsRepository.InsertNewPersonInterests(currentPerson, interests);
-                }
-
                 if (update.Occupation != null) {
                     var previousOccupation = currentPerson.Occupation;
                     var occupation = _occupationsRepository.InsertIfNotExists(update.Occupation);
+                    currentPerson.Occupation = null;
                     currentPerson.OccupationId = occupation.Id;
 
                     _occupationsRepository.RemoveIfNotReferenced(previousOccupation);
