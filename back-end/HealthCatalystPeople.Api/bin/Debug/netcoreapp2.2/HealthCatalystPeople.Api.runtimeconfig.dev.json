@@ -2,8 +2,7 @@
   "runtimeOptions": {
     "additionalProbingPaths": [
       "C:\\Users\\sskee\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\sskee\\.nuget\\packages",
-      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      "C:\\Users\\sskee\\.nuget\\packages"
     ]
   }
 }

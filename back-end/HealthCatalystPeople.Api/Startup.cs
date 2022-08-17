@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using HealthCatalystPeople.Data;
@@ -8,7 +7,6 @@ using HealthCatalystPeople.Services;
 using HealthCatalystPeople.Data.Repositories;
 using HealthCatalystPeople.Data.Helpers;
 using Microsoft.EntityFrameworkCore;
-using AutoMapper;
 
 namespace HealthCatalystPeople.Api
 {
@@ -35,17 +33,18 @@ namespace HealthCatalystPeople.Api
             services.AddTransient<IAddressRepository, AddressRepository>();
             services.AddTransient<IOccupationsRepository, OccupationsRepository>();
             services.AddTransient<IStringCompareHelper, StringCompareHelper>();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc();
             services.AddDbContext<HealthCatalystPeopleContext>((options) => {
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
             services.AddAutoMapper(typeof(MappingProfile));
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (env.EnvironmentName == "Debug")
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -56,13 +55,6 @@ namespace HealthCatalystPeople.Api
             }
 
             app.UseHttpsRedirection();
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "api/{controller}/{action}/{id?}"
-                );
-            });
             app.UseStaticFiles();
             app.UseSpa(options => {
                 options.Options.SourcePath = "~/index.html";
